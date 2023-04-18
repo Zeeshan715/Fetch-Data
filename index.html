@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+  <body>
+    <h2>Create Object from JSON String</h2>
+
+    <div id="data-container"></div>
+
+    <script>
+		const api_url = 'https://jsonplaceholder.typicode.com/users';
+		async function getuser(){
+			const response = await fetch(api_url);
+			const data = await response.json();
+
+			const dataContainer = document.getElementById('data-container');
+			data.forEach(user => {
+            const userCard = document.createElement('div');
+            userCard.classList.add('card');
+            userCard.innerHTML = `
+                <h3>ID: ${user.id}</h3>
+                <p>${user.name}</p>
+                <p>Email: ${user.email}</p>
+                <p>Phone: ${user.phone}</p>
+             `;
+                 dataContainer.appendChild(userCard);
+			});
+		}
+
+		getuser();
+	</script>
+  </body>
+</html>
